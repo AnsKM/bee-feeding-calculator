@@ -240,8 +240,27 @@ body.font-x-large {
     border: 2px solid var(--border-color);
     border-radius: var(--radius-md);
     font-size: 1rem;
+    font-family: var(--font-secondary); /* Ensure font inheritance */
     background: white;
     transition: all 0.3s ease;
+    color: var(--text-primary); /* Explicit text color */
+}
+
+/* Enhanced select element styling */
+.form-select {
+    cursor: pointer;
+    background-color: white;
+    /* Ensure text is visible and not cut off */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Option elements styling for better readability */
+.form-select option {
+    font-size: 1rem;
+    padding: var(--spacing-sm);
+    background: white;
+    color: var(--text-primary);
 }
 
 .form-input:focus,
