@@ -153,6 +153,16 @@ body.font-x-large {
     z-index: 90;
 }
 
+/* Hide mobile nav by default (desktop view) */
+.bottom-nav {
+    display: none;
+}
+
+/* Show desktop nav by default */
+.desktop-nav {
+    display: block;
+}
+
 .nav-tabs {
     display: flex;
     gap: var(--spacing-xs);
