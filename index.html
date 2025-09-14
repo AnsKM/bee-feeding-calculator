@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="description" content="Calculate precise bee feeding amounts and schedules based on your location, colony size, and season. Save your colonies from starvation.">
+    <meta name="theme-color" content="#d68910">
+    
+    <title>Seasonal Feeding Calculator & Schedule - Backyard Beekeeping Blueprint</title>
+    
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/mobile.css">
+    
+    <!-- PWA Support -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Georgia:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="app-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <svg class="bee-icon" width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <circle cx="16" cy="16" r="15" fill="#f4d03f"/>
+                        <path d="M16 8C12 8 10 12 10 16C10 20 12 24 16 24C20 24 22 20 22 16C22 12 20 8 16 8Z" fill="#d68910"/>
+                    </svg>
+                    <h1>Feeding Calculator</h1>
+                </div>
+                <button class="settings-btn" aria-label="Settings">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="currentColor" stroke-width="2"/>
+                        <path d="M19.4 15C19.2669 15.3016 19.2272 15.6362 19.286 15.9606C19.3448 16.285 19.4995 16.5843 19.73 16.82L19.79 16.88C19.976 17.0657 20.1235 17.2863 20.2241 17.5291C20.3248 17.7719 20.3766 18.0322 20.3766 18.295C20.3766 18.5578 20.3248 18.8181 20.2241 19.0609C20.1235 19.3037 19.976 19.5243 19.79 19.71C19.6043 19.896 19.3837 20.0435 19.1409 20.1441C18.8981 20.2448 18.6378 20.2966 18.375 20.2966C18.1122 20.2966 17.8519 20.2448 17.6091 20.1441C17.3663 20.0435 17.1457 19.896 16.96 19.71L16.9 19.65C16.6643 19.4195 16.365 19.2648 16.0406 19.206C15.7162 19.1472 15.3816 19.1869 15.08 19.32C14.7842 19.4468 14.532 19.6572 14.3543 19.9255C14.1766 20.1938 14.0813 20.5082 14.08 20.83V21C14.08 21.5304 13.8693 22.0391 13.4942 22.4142C13.1191 22.7893 12.6104 23 12.08 23C11.5496 23 11.0409 22.7893 10.6658 22.4142C10.2907 22.0391 10.08 21.5304 10.08 21V20.91C10.0723 20.579 9.96512 20.258 9.77251 19.9887C9.5799 19.7194 9.31074 19.5143 9 19.4C8.69838 19.2669 8.36381 19.2272 8.03941 19.286C7.71502 19.3448 7.41568 19.4995 7.18 19.73L7.12 19.79C6.93425 19.976 6.71368 20.1235 6.47088 20.2241C6.22808 20.3248 5.96783 20.3766 5.705 20.3766C5.44217 20.3766 5.18192 20.3248 4.93912 20.2241C4.69632 20.1235 4.47575 19.976 4.29 19.79C4.10405 19.6043 3.95653 19.3837 3.85588 19.1409C3.75523 18.8981 3.70343 18.6378 3.70343 18.375C3.70343 18.1122 3.75523 17.8519 3.85588 17.6091C3.95653 17.3663 4.10405 17.1457 4.29 16.96L4.35 16.9C4.58054 16.6643 4.73519 16.365 4.794 16.0406C4.85282 15.7162 4.81312 15.3816 4.68 15.08C4.55324 14.7842 4.34276 14.532 4.07447 14.3543C3.80618 14.1766 3.49179 14.0813 3.17 14.08H3C2.46957 14.08 1.96086 13.8693 1.58579 13.4942C1.21071 13.1191 1 12.6104 1 12.08C1 11.5496 1.21071 11.0409 1.58579 10.6658C1.96086 10.2907 2.46957 10.08 3 10.08H3.09C3.42099 10.0723 3.742 9.96512 4.0113 9.77251C4.28059 9.5799 4.48572 9.31074 4.6 9C4.73312 8.69838 4.77282 8.36381 4.714 8.03941C4.65519 7.71502 4.50054 7.41568 4.27 7.18L4.21 7.12C4.02405 6.93425 3.87653 6.71368 3.77588 6.47088C3.67523 6.22808 3.62343 5.96783 3.62343 5.705C3.62343 5.44217 3.67523 5.18192 3.77588 4.93912C3.87653 4.69632 4.02405 4.47575 4.21 4.29C4.39575 4.10405 4.61632 3.95653 4.85912 3.85588C5.10192 3.75523 5.36217 3.70343 5.625 3.70343C5.88783 3.70343 6.14808 3.75523 6.39088 3.85588C6.63368 3.95653 6.85425 4.10405 7.04 4.29L7.1 4.35C7.33568 4.58054 7.63502 4.73519 7.95941 4.794C8.28381 4.85282 8.61838 4.81312 8.92 4.68H9C9.29577 4.55324 9.54802 4.34276 9.72569 4.07447C9.90337 3.80618 9.99872 3.49179 10 3.17V3C10 2.46957 10.2107 1.96086 10.5858 1.58579C10.9609 1.21071 11.4696 1 12 1C12.5304 1 13.0391 1.21071 13.4142 1.58579C13.7893 1.96086 14 2.46957 14 3V3.09C14.0013 3.41179 14.0966 3.72618 14.2743 3.99447C14.452 4.26276 14.7042 4.47324 15 4.6C15.3016 4.73312 15.6362 4.77282 15.9606 4.714C16.285 4.65519 16.5843 4.50054 16.82 4.27L16.88 4.21C17.0657 4.02405 17.2863 3.87653 17.5291 3.77588C17.7719 3.67523 18.0322 3.62343 18.295 3.62343C18.5578 3.62343 18.8181 3.67523 19.0609 3.77588C19.3037 3.87653 19.5243 4.02405 19.71 4.21C19.896 4.39575 20.0435 4.61632 20.1441 4.85912C20.2448 5.10192 20.2966 5.36217 20.2966 5.625C20.2966 5.88783 20.2448 6.14808 20.1441 6.39088C20.0435 6.63368 19.896 6.85425 19.71 7.04L19.65 7.1C19.4195 7.33568 19.2648 7.63502 19.206 7.95941C19.1472 8.28381 19.1869 8.61838 19.32 8.92V9C19.4468 9.29577 19.6572 9.54802 19.9255 9.72569C20.1938 9.90337 20.5082 9.99872 20.83 10H21C21.5304 10 22.0391 10.2107 22.4142 10.5858C22.7893 10.9609 23 11.4696 23 12C23 12.5304 22.7893 13.0391 22.4142 13.4142C22.0391 13.7893 21.5304 14 21 14H20.91C20.5882 14.0013 20.2738 14.0966 20.0055 14.2743C19.7372 14.452 19.5268 14.7042 19.4 15Z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation Tabs -->
+    <nav class="main-nav">
+        <div class="container">
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-tab="calculator">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M2 4a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm2 0v12h12V4H4z"/>
+                        <path d="M8 7h1v1H8V7zm0 3h1v1H8v-1zm0 3h1v1H8v-1zm3-6h1v1h-1V7zm0 3h1v1h-1v-1zm0 3h1v1h-1v-1z"/>
+                    </svg>
+                    Calculator
+                </button>
+                <button class="nav-tab" data-tab="calendar">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zM4 6h12v10H4V6z"/>
+                    </svg>
+                    Calendar
+                </button>
+                <button class="nav-tab" data-tab="emergency">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 4a1 1 0 10-2 0v4a1 1 0 102 0V6zm-1 8a1 1 0 100-2 1 1 0 000 2z"/>
+                    </svg>
+                    Emergency
+                </button>
+                <button class="nav-tab" data-tab="recipes">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/>
+                        <path d="M4 5a2 2 0 012-2 1 1 0 000 2H6a2 2 0 00-2 2v6a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-.09a1 1 0 000-2 2 2 0 012 2v8a2 2 0 01-2 2H6a2 2 0 01-2-2V5z"/>
+                    </svg>
+                    Recipes
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Calculator Tab -->
+            <section class="tab-content active" id="calculator-tab">
+                <div class="calculator-intro">
+                    <h2>Feeding Calculator</h2>
+                    <p>Calculate exact feeding amounts for your colonies based on your specific situation.</p>
+                </div>
+
+                <!-- Step 1: Basic Info -->
+                <div class="calculator-card">
+                    <h3 class="card-title">Step 1: Your Colony Details</h3>
+                    
+                    <div class="form-group">
+                        <label for="num-hives">Number of Hives</label>
+                        <input type="number" id="num-hives" min="1" max="100" value="1" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="colony-size">Colony Size</label>
+                        <select id="colony-size" class="form-select">
+                            <option value="nuc">Nucleus Colony (3-5 frames)</option>
+                            <option value="small">Small Colony (1 deep box)</option>
+                            <option value="medium" selected>Medium Colony (2 deep boxes)</option>
+                            <option value="large">Large Colony (2+ deeps + supers)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="region">Your Region</label>
+                        <select id="region" class="form-select">
+                            <option value="north">Northern US (Zones 3-5)</option>
+                            <option value="central" selected>Central US (Zones 5-7)</option>
+                            <option value="south">Southern US (Zones 7-9)</option>
+                            <option value="pacific">Pacific Coast</option>
+                            <option value="mountain">Mountain West</option>
+                            <option value="desert">Desert Southwest</option>
+                            <option value="southeast">Southeast Coastal</option>
+                            <option value="midwest">Midwest Plains</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Step 2: Current Status -->
+                <div class="calculator-card">
+                    <h3 class="card-title">Step 2: Current Hive Status</h3>
+                    
+                    <div class="form-group">
+                        <label for="current-weight">Estimated Hive Weight</label>
+                        <div class="weight-helper">
+                            <p>Lift the back of your hive:</p>
+                            <div class="weight-options">
+                                <button class="weight-btn" data-weight="light">
+                                    <span class="emoji">🪶</span>
+                                    <span>Very Light</span>
+                                    <small>&lt;50 lbs</small>
+                                </button>
+                                <button class="weight-btn" data-weight="medium">
+                                    <span class="emoji">📦</span>
+                                    <span>Medium</span>
+                                    <small>50-80 lbs</small>
+                                </button>
+                                <button class="weight-btn" data-weight="heavy">
+                                    <span class="emoji">🏋️</span>
+                                    <span>Heavy</span>
+                                    <small>&gt;80 lbs</small>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="feeding-goal">Feeding Goal</label>
+                        <select id="feeding-goal" class="form-select">
+                            <option value="spring-buildup">Spring Buildup - Stimulate Brood</option>
+                            <option value="dearth">Summer Dearth - Maintenance</option>
+                            <option value="fall-prep" selected>Fall Preparation - Winter Stores</option>
+                            <option value="emergency">Emergency - Prevent Starvation</option>
+                            <option value="new-package">New Package/Nuc - Establishment</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div class="calculator-results" id="calc-results" style="display: none;">
+                    <h3 class="results-title">Your Feeding Plan</h3>
+                    
+                    <div class="result-cards">
+                        <div class="result-card primary">
+                            <h4>Syrup Ratio</h4>
+                            <div class="ratio-display" id="ratio-result">2:1</div>
+                            <p class="ratio-reason" id="ratio-reason">Heavy syrup for fall preparation</p>
+                        </div>
+
+                        <div class="result-card">
+                            <h4>Per Feeding</h4>
+                            <div class="amount-grid">
+                                <div class="amount-item">
+                                    <span class="amount-label">Sugar</span>
+                                    <span class="amount-value" id="sugar-amount">16 lbs</span>
+                                </div>
+                                <div class="amount-item">
+                                    <span class="amount-label">Water</span>
+                                    <span class="amount-value" id="water-amount">8 lbs</span>
+                                </div>
+                                <div class="amount-item">
+                                    <span class="amount-label">Makes</span>
+                                    <span class="amount-value" id="syrup-volume">1.5 gal</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="result-card">
+                            <h4>Total Needed</h4>
+                            <div class="total-display">
+                                <p>Feed <strong id="feed-frequency">2x per week</strong></p>
+                                <p>Until <strong id="feed-until">October 15</strong></p>
+                                <p class="total-amount">Total: <strong id="total-sugar">128 lbs sugar</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" onclick="showBatchRecipe()">
+                            View Batch Recipe
+                        </button>
+                        <button class="btn btn-secondary" onclick="saveFeedingPlan()">
+                            Save Plan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Calculate Button -->
+                <div class="calculate-section">
+                    <button class="btn btn-large btn-primary" onclick="calculateFeeding()">
+                        Calculate Feeding Plan
+                    </button>
+                </div>
+            </section>
+
+            <!-- Calendar Tab -->
+            <section class="tab-content" id="calendar-tab" style="display: none;">
+                <div class="calendar-header">
+                    <h2>Regional Feeding Calendar</h2>
+                    <p>Your personalized feeding schedule based on your location.</p>
+                </div>
+
+                <div class="calendar-controls">
+                    <select id="calendar-region" class="form-select">
+                        <option value="north">Northern US</option>
+                        <option value="central" selected>Central US</option>
+                        <option value="south">Southern US</option>
+                    </select>
+                </div>
+
+                <div class="calendar-timeline">
+                    <!-- Calendar will be generated here -->
+                </div>
+
+                <div class="calendar-legend">
+                    <div class="legend-item">
+                        <span class="legend-color" style="background: #4CAF50;"></span>
+                        <span>Active Feeding</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background: #FF9800;"></span>
+                        <span>Monitor & Check</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color" style="background: #F44336;"></span>
+                        <span>Critical Period</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Emergency Tab -->
+            <section class="tab-content" id="emergency-tab" style="display: none;">
+                <div class="emergency-header">
+                    <h2>Emergency Feeding Guide</h2>
+                    <p>Quick decisions when your bees need help NOW.</p>
+                </div>
+
+                <div class="diagnostic-flowchart">
+                    <div class="diagnostic-card" id="diagnostic-start">
+                        <h3>Is Emergency Feeding Needed?</h3>
+                        <p>Answer these quick questions:</p>
+                        
+                        <div class="diagnostic-question">
+                            <p>Can you easily lift the back of the hive with one hand?</p>
+                            <div class="diagnostic-buttons">
+                                <button class="btn btn-danger" onclick="showEmergencyYes()">Yes - Very Light!</button>
+                                <button class="btn btn-success" onclick="checkNextQuestion()">No - Feels Heavy</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="emergency-action" id="emergency-action" style="display: none;">
+                        <div class="alert alert-danger">
+                            <h3>⚠️ FEED IMMEDIATELY</h3>
+                            <p>Your colony is at risk of starvation!</p>
+                        </div>
+                        
+                        <div class="emergency-steps">
+                            <h4>Emergency Feeding Steps:</h4>
+                            <ol>
+                                <li>If above 50°F: Use 2:1 sugar syrup</li>
+                                <li>If below 50°F: Use dry sugar or candy board</li>
+                                <li>Place feed directly above cluster</li>
+                                <li>Check again in 3 days</li>
+                            </ol>
+                        </div>
+
+                        <button class="btn btn-primary" onclick="showEmergencyRecipe()">
+                            Get Emergency Recipe
+                        </button>
+                    </div>
+                </div>
+
+                <div class="starvation-signs">
+                    <h3>Signs of Starvation</h3>
+                    <div class="signs-grid">
+                        <div class="sign-card">
+                            <span class="sign-icon">🐝</span>
+                            <h4>Dead bees head-first in cells</h4>
+                            <p>Classic starvation position</p>
+                        </div>
+                        <div class="sign-card">
+                            <span class="sign-icon">🍯</span>
+                            <h4>No visible honey stores</h4>
+                            <p>Empty cells around brood</p>
+                        </div>
+                        <div class="sign-card">
+                            <span class="sign-icon">⚖️</span>
+                            <h4>Hive feels very light</h4>
+                            <p>Less than 50 lbs total weight</p>
+                        </div>
+                        <div class="sign-card">
+                            <span class="sign-icon">👶</span>
+                            <h4>Cannibalized larvae</h4>
+                            <p>Uncapped and eaten brood</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recipes Tab -->
+            <section class="tab-content" id="recipes-tab" style="display: none;">
+                <div class="recipes-header">
+                    <h2>Batch Recipes</h2>
+                    <p>Pre-calculated recipes for common batch sizes.</p>
+                </div>
+
+                <div class="recipe-selector">
+                    <button class="recipe-btn active" data-ratio="1:1">1:1 Spring Syrup</button>
+                    <button class="recipe-btn" data-ratio="2:1">2:1 Fall Syrup</button>
+                </div>
+
+                <div class="recipe-cards">
+                    <div class="recipe-card">
+                        <h3>1 Gallon Batch</h3>
+                        <div class="recipe-ingredients">
+                            <div class="ingredient">
+                                <span>Sugar:</span>
+                                <strong>8 lbs</strong>
+                            </div>
+                            <div class="ingredient">
+                                <span>Water:</span>
+                                <strong>8 lbs (1 gal)</strong>
+                            </div>
+                            <div class="ingredient">
+                                <span>Makes:</span>
+                                <strong>~1.5 gallons</strong>
+                            </div>
+                        </div>
+                        <button class="btn btn-small">View Instructions</button>
+                    </div>
+
+                    <div class="recipe-card">
+                        <h3>5 Gallon Batch</h3>
+                        <div class="recipe-ingredients">
+                            <div class="ingredient">
+                                <span>Sugar:</span>
+                                <strong>40 lbs</strong>
+                            </div>
+                            <div class="ingredient">
+                                <span>Water:</span>
+                                <strong>40 lbs (5 gal)</strong>
+                            </div>
+                            <div class="ingredient">
+                                <span>Makes:</span>
+                                <strong>~7.5 gallons</strong>
+                            </div>
+                        </div>
+                        <button class="btn btn-small">View Instructions</button>
+                    </div>
+
+                    <div class="recipe-card featured">
+                        <span class="badge">Most Popular</span>
+                        <h3>10 lb Sugar Bag</h3>
+                        <div class="recipe-ingredients">
+                            <div class="ingredient">
+                                <span>Sugar:</span>
+                                <strong>10 lbs (1 bag)</strong>
+                            </div>
+                            <div class="ingredient">
+                                <span>Water:</span>
+                                <strong>10 lbs (1.25 gal)</strong>
+                            </div>
+                            <div class="ingredient">
+                                <span>Makes:</span>
+                                <strong>~2 gallons</strong>
+                            </div>
+                        </div>
+                        <button class="btn btn-small btn-primary">View Instructions</button>
+                    </div>
+                </div>
+
+                <div class="mixing-tips">
+                    <h3>Mixing Tips</h3>
+                    <ul>
+                        <li>Heat water to 140-160°F (do not boil)</li>
+                        <li>Remove from heat before adding sugar</li>
+                        <li>Stir until completely dissolved</li>
+                        <li>Cool to room temperature before feeding</li>
+                        <li>Store unused syrup in refrigerator (up to 2 weeks)</li>
+                    </ul>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settings-modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="modal-close" onclick="closeSettings()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="settings-group">
+                    <h3>Display</h3>
+                    <div class="setting-item">
+                        <label for="font-size">Font Size</label>
+                        <select id="font-size" class="form-select">
+                            <option value="normal">Normal</option>
+                            <option value="large">Large</option>
+                            <option value="x-large">Extra Large</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="settings-group">
+                    <h3>Units</h3>
+                    <div class="setting-item">
+                        <label for="units">Measurement Units</label>
+                        <select id="units" class="form-select">
+                            <option value="imperial">Imperial (lbs, gallons)</option>
+                            <option value="metric">Metric (kg, liters)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h3>Data</h3>
+                    <button class="btn btn-secondary" onclick="exportData()">Export Feeding Log</button>
+                    <button class="btn btn-danger" onclick="clearData()">Clear All Data</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/calculator.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/emergency.js"></script>
+    <script src="js/recipes.js"></script>
+    <script>
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(reg => console.log('Service Worker registered'))
+                .catch(err => console.log('Service Worker registration failed'));
+        }
+
+        // Tab Navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabName = this.dataset.tab;
+                
+                // Update active tab
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show corresponding content
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.style.display = 'none';
+                });
+                document.getElementById(`${tabName}-tab`).style.display = 'block';
+            });
+        });
+
+        // Settings Modal
+        document.querySelector('.settings-btn').addEventListener('click', function() {
+            document.getElementById('settings-modal').style.display = 'flex';
+        });
+
+        function closeSettings() {
+            document.getElementById('settings-modal').style.display = 'none';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved preferences
+            loadUserPreferences();
+            
+            // Set current date context
+            updateDateContext();
+        });
+
+        function loadUserPreferences() {
+            const prefs = JSON.parse(localStorage.getItem('feedingCalcPrefs') || '{}');
+            if (prefs.region) {
+                document.getElementById('region').value = prefs.region;
+            }
+            if (prefs.fontSize) {
+                document.body.className = `font-${prefs.fontSize}`;
+            }
+        }
+
+        function updateDateContext() {
+            const now = new Date();
+            const month = now.toLocaleString('default', { month: 'long' });
+            // Update UI with current date context
+        }
+    </script>
+</body>
+</html>
