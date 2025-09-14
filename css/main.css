@@ -156,6 +156,11 @@ body.font-x-large {
 /* Hide mobile nav by default (desktop view) */
 .bottom-nav {
     display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
 }
 
 /* Show desktop nav by default */
