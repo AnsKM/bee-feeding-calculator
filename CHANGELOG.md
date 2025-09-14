@@ -1,5 +1,27 @@
 # Changelog - Seasonal Feeding Calculator & Schedule
 
+## Version 1.0.1 - 2025-09-14
+
+### Bug Fixes
+✅ **Fixed Small Dropdown Text on Mobile**
+- Increased select element font-size from 16px to 18px for better readability
+- Added explicit font-family inheritance to ensure consistent typography
+- Implemented custom dropdown arrow with SVG for consistent cross-platform styling
+- Added iOS-specific webkit appearance fixes to prevent native styling issues
+- Increased minimum touch target height from 44px to 48px for better accessibility
+- Enhanced padding (12px vertical, 16px horizontal) for improved touch interaction
+- Added responsive font sizing: 17px for screens < 375px, 18px for standard mobile
+- Fixed iOS text rendering issues with webkit font smoothing
+- Ensured proper text color inheritance and overflow handling
+
+### Technical Details
+- iOS zoom prevention maintained while improving readability
+- Custom dropdown arrow uses inline SVG with brand colors
+- Webkit appearance reset ensures consistent styling across iOS versions
+- Touch targets now exceed WCAG 2.1 AAA standards (48x48px minimum)
+
+---
+
 ## Version 1.0.0 - 2025-09-14
 
 ### Initial Release
