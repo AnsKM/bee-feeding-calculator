@@ -118,4 +118,4 @@ Created comprehensive feeding calculator web application as order bump for Backy
 - [ ] Dark mode option
 - [ ] Export to calendar apps
 - [ ] Hive weight tracking graphs
-- [ ] Community sharing features
+- [ ] Community sharing features2025-09-14: Created comprehensive order bump marketing copy in /marketing/bumps_and_upsells/order_bumps/feeding_calculator/
