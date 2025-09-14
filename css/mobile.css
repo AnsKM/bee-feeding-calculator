@@ -147,6 +147,13 @@
         gap: var(--spacing-md);
     }
     
+    /* Ensure navigation grid layout in portrait */
+    @media (max-width: 575px) {
+        .nav-tabs {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+    
     .amount-item {
         flex-direction: row;
         justify-content: space-between;
@@ -183,13 +190,56 @@
         font-size: 1.25rem;
     }
     
+    /* In landscape with limited height, use horizontal layout */
+    .nav-tabs {
+        display: flex !important;
+        grid-template-columns: none;
+        overflow-x: visible;
+        justify-content: center;
+    }
+    
     .nav-tab {
         padding: var(--spacing-xs) var(--spacing-sm);
         font-size: 0.8125rem;
+        flex-direction: row !important;
     }
     
     .main-content {
         padding: var(--spacing-md) 0;
+    }
+}
+
+/* Mobile navigation grid - no horizontal scrolling */
+@media (max-width: 575px) {
+    .nav-tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: var(--spacing-xs);
+        padding: var(--spacing-xs);
+        justify-content: stretch;
+        overflow-x: visible; /* Remove any horizontal scroll */
+    }
+    
+    .nav-tab {
+        width: 100%;
+        justify-content: center;
+        min-height: 48px;
+        font-size: 0.875rem;
+        padding: var(--spacing-sm) var(--spacing-xs);
+        white-space: nowrap;
+    }
+    
+    /* Adjust icon and text spacing */
+    .nav-tab svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    /* Ensure active state is clearly visible in grid */
+    .nav-tab.active {
+        box-shadow: 0 2px 8px rgba(214, 137, 16, 0.3);
+        transform: none; /* Prevent layout shift */
     }
 }
 
@@ -214,13 +264,13 @@
         font-size: 1.25rem;
     }
     
-    .nav-tabs {
-        gap: 2px;
-    }
-    
+    /* Stack icon and text vertically on very small screens */
     .nav-tab {
-        padding: var(--spacing-xs) var(--spacing-sm);
-        font-size: 0.75rem;
+        flex-direction: column;
+        gap: 2px;
+        padding: var(--spacing-xs);
+        font-size: 0.7rem;
+        min-height: 44px;
     }
     
     .nav-tab svg {
