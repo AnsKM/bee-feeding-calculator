@@ -1,5 +1,20 @@
 # Changelog - Seasonal Feeding Calculator & Schedule
 
+## Version 1.0.2 - 2025-09-14
+
+### Bug Fixes
+✅ **Fixed Horizontally Scrollable Navigation on Mobile**
+- Replaced horizontal scroll with 2x2 grid layout on screens < 576px
+- All 4 navigation tabs now visible without scrolling
+- Removed overflow-x: auto that caused poor UX
+- Maintained large 48px touch targets for accessibility
+- Added vertical stacking for very small screens (<375px)
+- Improved active state visibility with enhanced box-shadow
+- Centered navigation on larger screens
+- Special landscape orientation handling
+
+---
+
 ## Version 1.0.1 - 2025-09-14
 
 ### Bug Fixes
